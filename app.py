@@ -9,7 +9,7 @@ import streamlit as st
 from streamlit_webrtc import webrtc_streamer
 
 # Initialization
-model_path = 'models/model_NN_MP_for_st.h5'
+model_path = 'models/sign_language_model.h5'
 model = tf.keras.models.load_model(model_path)
 
 category_names = ['A', 'B', 'C', 'D', 'del', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'space', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
@@ -74,14 +74,14 @@ def video_frame_callback(frame):
             else:
                 sign_sentence.append(y_pred_text)
          # Update sign sentence placeholder
-        sign_sentence_placeholder.text = ''.join(sign_sentence)
+        #sign_sentence_placeholder.text = ''.join(sign_sentence)
         #print(''.join(sign_sentence))
 
 
     return av.VideoFrame.from_ndarray(image, format='bgr24')
 
 # Streamlit Code
-st.header('ASL Gesture Recognition App', divider='green')
+st.header('Sign Language Detetction', divider='green')
 
 with st.container(border=True):
     st.write('''
@@ -103,13 +103,13 @@ st.write('#')
 
 
 # Display the sign_sentence as a string
-st.write('## Sign Sentence')
-with st.container(height=100):
-    sign_sentence_placeholder = st.empty()
+# st.write('## Sign Sentence')
+# with st.container(height=100):
+#     sign_sentence_placeholder = st.empty()
 
-st.write('#')
-clear_button = st.button('Clear Text')
+# st.write('#')
+# clear_button = st.button('Clear Text')
 
-if clear_button:
-    sign_sentence = []
-    sign_sentence_placeholder.text = ''.join(sign_sentence)
+# if clear_button:
+#     sign_sentence = []
+#     sign_sentence_placeholder.text = ''.join(sign_sentence)
